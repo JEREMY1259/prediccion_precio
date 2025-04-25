@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>InmoBien - Predicción de Precio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>InmoBien</h1>
+        <h2>Calcula el precio estimado de tu propiedad</h2>
+        <form action="/predecir" method="POST">
+            <input type="number" name="metros" placeholder="Metros cuadrados" required>
+            <input type="number" name="habitaciones" placeholder="Habitaciones" required>
+            <input type="number" name="banos" placeholder="Baños" required>
+            <input type="number" name="antiguedad" placeholder="Antigüedad" required>
+            <select name="garaje" required>
+                <option value="1">Con garaje</option>
+                <option value="0">Sin garaje</option>
+            </select>
+            <select name="jardin" required>
+                <option value="1">Con jardín</option>
+                <option value="0">Sin jardín</option>
+            </select>
+            <button type="submit">Predecir</button>
+        </form>
+
+        {% if prediccion %}
+            <div class="resultado">
+                <h3>Precio estimado:</h3>
+                <p><strong>S/. {{ prediccion }}</strong></p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
